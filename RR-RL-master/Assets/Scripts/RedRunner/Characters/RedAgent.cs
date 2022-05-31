@@ -24,8 +24,13 @@ public class RedAgent : Agent
     private int stepsSinceLastCheckpoint;
     Rigidbody2D redrunnerRigidbody;
     
+<<<<<<< HEAD
     //----------------area definizione dei parametri
     //private Vector3 checkpoint_position;	//al momento dichiarato all'interno di 'collect_observation()'
+=======
+    //----------------
+    //private Vector3 checkpoint_position;
+>>>>>>> aa9e38be44811b772a9fddad68624edc98e39ffc
     //private Vector3 checkpoint_position2;
     private Vector3 appoggio_checkpoint_position;
     private bool subscribed;
@@ -154,8 +159,8 @@ public class RedAgent : Agent
 				//Debug.Log("ENTRATO IN FixedUpdate() - trackCheckpoints != currentTrackCheckpoints ");
                 currentTrackCheckpoints = trackCheckpoints;	//SE SONO ARRIVATO AD UN NUOVO TRACKCHECKPOINT, ALLORA LO ASSEGNO ALLO STATO CORRENTE
                 Subscribe(trackCheckpoints);	//POI SOTTOSCRIVO IL MONITORAGGIO DELL'AGENT AL NUOVO BLOCCO DI CHECKPOINT
-                Debug.Log("rew fixedupdate");
-                Debug.Log("reward added");
+                //Debug.Log("rew fixedupdate");
+                //Debug.Log("reward added");
                 AddReward(1f);
             }
         }
@@ -172,7 +177,11 @@ public class RedAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
+<<<<<<< HEAD
         Vector3 checkpoint_position = new Vector3();
+=======
+	    Vector3 checkpoint_position = new Vector3();
+>>>>>>> aa9e38be44811b772a9fddad68624edc98e39ffc
 	    Vector3 checkpoint_position_2 = new Vector3();
         Vector3 red_position = redrunner.transform.localPosition;
         sensor.AddObservation(red_position);
@@ -190,7 +199,6 @@ public class RedAgent : Agent
 			if (currentTrackCheckpoints)
 			{
 				checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber).transform.localPosition;
-				//checkpoint_position_2 = currentTrackCheckpoints.getCheckpointPosition(currentBlockCheckpointsNumber2);
 				
 				if (red_position[0] > checkpoint_position[0] & last_checkpoint==true)	//ci entra quando ho superato l'ultimo checkpoint di ogni traccia
                 {
@@ -201,11 +209,14 @@ public class RedAgent : Agent
 					last_checkpoint = false;
 					subscribed = false;
                 }
-                else
+				else
                 {
 					checkpoint_position += accumulo_posizione_tracks;
+<<<<<<< HEAD
 					
 					//parte per gestire 2 checkpoint da passare al sensore insieme, altrimenti toglierla, se si vuole provare con 1 checkpoint
+=======
+>>>>>>> aa9e38be44811b772a9fddad68624edc98e39ffc
 					if (currentBlockCheckpointsNumber + 1 >= currentTrackCheckpoints.getCheckpointsNumber())
 					{
 						checkpoint_position_2 = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber).transform.localPosition;
@@ -215,6 +226,7 @@ public class RedAgent : Agent
 					{
 						checkpoint_position_2 = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber+1).transform.localPosition + accumulo_posizione_tracks;
 					}
+<<<<<<< HEAD
 				}
 				
 				//Debug.Log("checkpoint_position");
@@ -228,6 +240,15 @@ public class RedAgent : Agent
 				//--Debug.Log("indice checkpoint attuale");
 				//--Debug.Log(currentBlockCheckpointsNumber2);
 				//--Debug.Log("--------------------------");
+=======
+					
+				}
+
+				Debug.Log("checkpoint_position");
+				Debug.Log(checkpoint_position);
+				Debug.Log("checkpoint_position_2");
+				Debug.Log(checkpoint_position_2);
+>>>>>>> aa9e38be44811b772a9fddad68624edc98e39ffc
 				
 			}
 			
@@ -278,7 +299,7 @@ public class RedAgent : Agent
 			*/
         //---------------------------------------------------------------------------------------------------------------------   
     }
-
+    
     //non credo che questa sia da modificare, perchè a partire dall'input Buffer poi attiva i metodi per fargli fare movimenti
     public override void OnActionReceived(ActionBuffers actionBuffers)		//metodo che modifica alcuni parametri dopo aver ricevuto il buffer per far fare le osservazioni effettive all'Agent
     {

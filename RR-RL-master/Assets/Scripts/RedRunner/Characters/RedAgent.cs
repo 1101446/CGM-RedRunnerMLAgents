@@ -44,7 +44,7 @@ public class RedAgent : Agent
 
     public override void OnEpisodeBegin()		//parametri di inizio episodio, non fa altro che richiamare FirstTrackCheckpoint() di importante
     {
-		Debug.Log("ENTRATO IN OnEpisodeBegin() ");
+		//Debug.Log("ENTRATO IN OnEpisodeBegin() ");
         currentBlockCheckpointsNumber = 0;
         //-----
         currentBlockCheckpointsNumber2 = 0;
@@ -63,9 +63,9 @@ public class RedAgent : Agent
     
     IEnumerator FirstTrackCheckpoint()
     {
-		Debug.Log("ENTRATO IN FirstTrackCheckpoint() ");
+		//Debug.Log("ENTRATO IN FirstTrackCheckpoint() ");
         yield return new WaitForSeconds (1f * Time.timeScale);
-        Debug.Log("-------------------------------------------------------------------------------------------------Terrain Generator");
+        //Debug.Log("-------------------------------------------------------------------------------------------------Terrain Generator");
         trackCheckpoints = TerrainGenerator.Singleton.GetCharacterBlock().GetComponent<TrackCheckpoints>();		//genera delle aree con checkpoints (NUMERO VARIABILE A SECONDA DELLA DISTANZA A CUI PUò ARRIVARE) - e le prendo in formato oggetto 'trackcheckpoints'
         currentTrackCheckpoints = trackCheckpoints;		//metto riferimento al primo checkpoint di una lista
         Subscribe(trackCheckpoints);
@@ -74,7 +74,7 @@ public class RedAgent : Agent
 
     private void Subscribe(TrackCheckpoints tc)	//mi allaccio ad un certo blocco di percorso e monitoro i checkpoints se ci passo in ordine coerente
     {
-        Debug.Log("SUBSCRIBED TO " + tc);
+        //Debug.Log("SUBSCRIBED TO " + tc);
         tc.OnPlayerCorrectCheckpoint += TrackCheckpoints_OnPlayerCorrectCheckpoint;	//assegno questi 2 metodi a degli attirbuti della classe, che faranno delle operazioni mentre l'agente si muove
         tc.OnPlayerWrongCheckpoint += TrackCheckpoints_OnPlayerWrongCheckpoint;
         //---------variabile sotto per passare ai CHECKPOINT VETTORIALI-------
@@ -87,7 +87,7 @@ public class RedAgent : Agent
 //viene richiamato da Trackcheckpoints in 'PlayerThroughCheckpoint'
     private void TrackCheckpoints_OnPlayerCorrectCheckpoint(object sender, System.EventArgs e)		//cosa succede se prendo il giusto checkpoint
     {
-		Debug.Log("ENTRATO IN OnPlayerCorrectCheckpoint ");
+		//Debug.Log("ENTRATO IN OnPlayerCorrectCheckpoint ");
         stepsSinceLastCheckpoint = 0;
         firstCheckpointPassed = true;
         Debug.Log("reward added");
@@ -97,7 +97,7 @@ public class RedAgent : Agent
         if (currentBlockCheckpointsNumber == currentTrackCheckpoints.getCheckpointsNumber())
         {
 			//----------
-			Debug.Log("---------------------------------sono arrivato alla fine di questa area di gioco");
+			//Debug.Log("---------------------------------sono arrivato alla fine di questa area di gioco");
 			
 			appoggio_checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.localPosition;
 			accumulo_posizione_tracks += appoggio_checkpoint_position;
@@ -111,7 +111,7 @@ public class RedAgent : Agent
     
     private void TrackCheckpoints_OnPlayerWrongCheckpoint(object sender, System.EventArgs e)		//cosa succede se prendo il checkpoint sbagliato
     {
-		Debug.Log("ENTRATO IN OnPlayerWrongCheckpoint ");
+		//Debug.Log("ENTRATO IN OnPlayerWrongCheckpoint ");
         stepsSinceLastCheckpoint = 0;
         Debug.Log("penalty added");
         AddReward(-1f);
@@ -122,7 +122,7 @@ public class RedAgent : Agent
 
     private void Awake()		//Use Awake to initialize variables or states before the application starts 
     {
-		Debug.Log("AWAKE() - RED_AGENT");
+		//Debug.Log("AWAKE() - RED_AGENT");
         redrunner = GetComponent<RedCharacter>();
         Academy.Instance.AutomaticSteppingEnabled = false;
         redrunnerRigidbody = GetComponent<Rigidbody2D>();
@@ -151,7 +151,7 @@ public class RedAgent : Agent
             if ((trackCheckpoints != currentTrackCheckpoints))		//si attiva quando una nuova porzione di percorso viene attraversata (quindi le tracce non corrispondono e assegno la nuova traccia)
             {
 				//CI ENTRA NEL MOMENTO STESSO IN CUI IL PERSONAGGIO INCROCIA UN CHECKPOINT DI UNA NUOVA AREA
-				Debug.Log("ENTRATO IN FixedUpdate() - trackCheckpoints != currentTrackCheckpoints ");
+				//Debug.Log("ENTRATO IN FixedUpdate() - trackCheckpoints != currentTrackCheckpoints ");
                 currentTrackCheckpoints = trackCheckpoints;	//SE SONO ARRIVATO AD UN NUOVO TRACKCHECKPOINT, ALLORA LO ASSEGNO ALLO STATO CORRENTE
                 Subscribe(trackCheckpoints);	//POI SOTTOSCRIVO IL MONITORAGGIO DELL'AGENT AL NUOVO BLOCCO DI CHECKPOINT
                 Debug.Log("rew fixedupdate");
@@ -335,7 +335,7 @@ public class RedAgent : Agent
 
     private void Unsubscribe(TrackCheckpoints tc)		//mi stacco da una certa porzione di gioco per collegarmi alle successive
     {
-        Debug.Log("---------------------------------------------------------------UNSUBSCRIBED TO " + tc);
+        //Debug.Log("---------------------------------------------------------------UNSUBSCRIBED TO " + tc);
         tc.OnPlayerCorrectCheckpoint -= TrackCheckpoints_OnPlayerCorrectCheckpoint;
         tc.OnPlayerWrongCheckpoint -= TrackCheckpoints_OnPlayerWrongCheckpoint;
         //----------------------------------

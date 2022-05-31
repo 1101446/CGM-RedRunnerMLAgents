@@ -89,7 +89,7 @@ public class TrackCheckpoints : MonoBehaviour
 
     public void PlayerThroughCheckpoint(CheckpointSingle checkpointSingle)	//
     {
-		Debug.Log("ENTRATO IN PLAYER_THROUGH_CHECKPOINT() - trackcheckpoints");
+		//Debug.Log("ENTRATO IN PLAYER_THROUGH_CHECKPOINT() - trackcheckpoints");
 		//Debug.Log(checkpointSingle);
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)	//quando trovo contatto con uno dei checkpoint singoli, verifico se la sua posizione si trova effettivamente nell'indice attuale che dovrebbe trovare
         {

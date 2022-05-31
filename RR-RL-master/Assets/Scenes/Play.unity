@@ -50675,7 +50675,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x 29
+  m_Text: x 17435
   m_CoinTextFormat: x {0}
 --- !u!114 &254
 MonoBehaviour:
@@ -57173,7 +57173,7 @@ PrefabInstance:
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
@@ -57183,7 +57183,7 @@ PrefabInstance:
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
       propertyPath: m_BrainParameters.NumStackedVectorObservations
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
@@ -57218,7 +57218,7 @@ PrefabInstance:
     - target: {fileID: 4538206470407753945, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
       propertyPath: MaxStep
-      value: 0
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 4538206470407753945, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}

@@ -24,9 +24,9 @@ public class RedAgent : Agent
     private int stepsSinceLastCheckpoint;
     Rigidbody2D redrunnerRigidbody;
     
-    //----------------
-    private Vector3 checkpoint_position;
-    private Vector3 checkpoint_position2;
+    //----------------area definizione dei parametri
+    //private Vector3 checkpoint_position;	//al momento dichiarato all'interno di 'collect_observation()'
+    //private Vector3 checkpoint_position2;
     private Vector3 appoggio_checkpoint_position;
     private bool subscribed;
     private bool subscribed2 = true; 
@@ -102,7 +102,7 @@ public class RedAgent : Agent
 			appoggio_checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.localPosition;
 			accumulo_posizione_tracks += appoggio_checkpoint_position;
             last_checkpoint = true;
-            currentBlockCheckpointsNumber = 1;
+            currentBlockCheckpointsNumber = 1;	//perchè ci servirà di partire di passargli il secondo checkpoint al runner, dopo che si sarà iscritto alla traccia avendo già attraversato il primo checkpoint
 			//----------
 
             //currentBlockCheckpointsNumber = 0;
@@ -172,7 +172,8 @@ public class RedAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        
+        Vector3 checkpoint_position = new Vector3();
+	    Vector3 checkpoint_position_2 = new Vector3();
         Vector3 red_position = redrunner.transform.localPosition;
         sensor.AddObservation(red_position);
         
@@ -194,28 +195,48 @@ public class RedAgent : Agent
 				if (red_position[0] > checkpoint_position[0] & last_checkpoint==true)	//ci entra quando ho superato l'ultimo checkpoint di ogni traccia
                 {
 					checkpoint_position = accumulo_posizione_tracks;
+					checkpoint_position_2 = accumulo_posizione_tracks;
 					checkpoint_position[0] += 10;
+					checkpoint_position_2[0] += 20;
 					last_checkpoint = false;
 					subscribed = false;
                 }
                 else
                 {
 					checkpoint_position += accumulo_posizione_tracks;
+					
+					//parte per gestire 2 checkpoint da passare al sensore insieme, altrimenti toglierla, se si vuole provare con 1 checkpoint
+					if (currentBlockCheckpointsNumber + 1 >= currentTrackCheckpoints.getCheckpointsNumber())
+					{
+						checkpoint_position_2 = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber).transform.localPosition;
+						checkpoint_position_2[0] += 10;
+					}
+					else
+					{
+						checkpoint_position_2 = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber+1).transform.localPosition + accumulo_posizione_tracks;
+					}
 				}
+				
+				//Debug.Log("checkpoint_position");
+				//Debug.Log(checkpoint_position);
+				//Debug.Log("checkpoint_position_2");
+				//Debug.Log(checkpoint_position_2);
                 
-				Debug.Log("checkpoint_position");
-				Debug.Log(checkpoint_position);
+                //--Debug.Log("--------------------------");
+				//--Debug.Log("checkpoint_position");
+				//--Debug.Log(checkpoint_position);
+				//--Debug.Log("indice checkpoint attuale");
+				//--Debug.Log(currentBlockCheckpointsNumber2);
+				//--Debug.Log("--------------------------");
 				
 			}
 			
-			//--Debug.Log("--------------------------");
-			//--Debug.Log("indice checkpoint attuale");
-			//--Debug.Log(currentBlockCheckpointsNumber2);
-			//--Debug.Log("--------------------------");
+			
 		}
 		
 		//--------------sensor adding the vector position of the checkpoint
 		sensor.AddObservation(checkpoint_position);
+		sensor.AddObservation(checkpoint_position_2);
 		
 		
 		/*

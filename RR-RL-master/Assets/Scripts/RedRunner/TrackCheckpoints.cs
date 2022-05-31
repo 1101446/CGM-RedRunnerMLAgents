@@ -24,7 +24,7 @@ public class TrackCheckpoints : MonoBehaviour
     private String checkpointCorrect;
     private void Awake()	//risveglia questa classe da RedAgent, caricando la lista dei checkpoint che trova nella mappa, poi crea una lista ordinata composta da ogni SingleCheckpoint in ordine
     {
-		Debug.Log("--------------------------------------------------------------------------------ENTRATO IN TRACK_CHECKPOINT - AWAKE()");
+		//Debug.Log("--------------------------------------------------------------------------------ENTRATO IN TRACK_CHECKPOINT - AWAKE()");
         //Transform è la libreria/classe che gestisce gli oggetti nello spazio (posizioni)
         Transform checkpointTransform = transform.Find("Checkpoints");	//Find cerca tutti i blocchi e i figli che hanno stringa 'Checkpoints' in 'Hierarchy'
 
@@ -42,8 +42,8 @@ public class TrackCheckpoints : MonoBehaviour
 
             //-----------------------------------------
             xPosition_2 = checkpointSingleTransform.localPosition;
-            Debug.Log("TRACK_CHECKPOINT - elemento ");
-            Debug.Log(xPosition_2);
+            //Debug.Log("TRACK_CHECKPOINT - elemento ");
+            //Debug.Log(xPosition_2);
             
             positionsList.Add(xPosition_2);
             //-----------------------------------------

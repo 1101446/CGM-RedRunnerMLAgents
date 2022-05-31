@@ -14,7 +14,7 @@ Progetto Computer Graphics e Multimedia A.A. 2021/2022
 	•	mlagents-learn --run-id=test3-run1 --resume(continua stesso allenamento da dove si è fermato)
 	•	mlagents-learn config/FILE.yaml  --run-id=test3-run1 (per utilizzare uno specifico file di configurazione di iperparametri)
 	•	mlagents-learn config/FILE.yaml  --run-id=test3-run2 --initialize-from=test3-run1(per far partire un addestramento da un training precedente)
-	•	tensor board --logdir results --port 6006
+	•	tensorboard --logdir results --port 6006
 	  ⁃	localhost:6006/#scalars (da barra di ricerca google)
 
 

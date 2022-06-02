@@ -98,7 +98,7 @@ public class TrackCheckpoints : MonoBehaviour
             OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
             Debug.Log("correct");
             nextCheckpointSingleIndex++;
-            Debug.Log(nextCheckpointSingleIndex);
+            //Debug.Log(nextCheckpointSingleIndex);
         }
         else
         {

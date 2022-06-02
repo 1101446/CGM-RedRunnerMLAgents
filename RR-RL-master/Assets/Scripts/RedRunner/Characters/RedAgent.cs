@@ -213,6 +213,7 @@ public class RedAgent : Agent
 					
 					checkpoint_position_[0] += 10;
 					checkpoint_position_2_[0] += 20;
+					last_checkpoint = false;
 					
 		
                	}

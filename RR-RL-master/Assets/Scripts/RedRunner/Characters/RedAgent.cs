@@ -24,8 +24,13 @@ public class RedAgent : Agent
     private int stepsSinceLastCheckpoint;
     Rigidbody2D redrunnerRigidbody;
 
+
     //----------------area definizione dei parametri
     //private Vector3 checkpoint_position;	//al momento dichiarato all'interno di 'collect_observation()'
+
+    //----------------
+    //private Vector3 checkpoint_position;
+
 
     //private Vector3 checkpoint_position2;
     
@@ -105,8 +110,11 @@ public class RedAgent : Agent
 			//----------
 			//Debug.Log("---------------------------------sono arrivato alla fine di questa area di gioco");
 			
+
 			appoggio_checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.localPosition;//
 			accumulo_posizione_tracks += appoggio_checkpoint_position;//
+			appoggio_checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.localPosition;
+       	    accumulo_posizione_tracks += appoggio_checkpoint_position;
             last_checkpoint = true;
             currentBlockCheckpointsNumber = 1;	//perchè ci servirà di partire di passargli il secondo checkpoint al runner, dopo che si sarà iscritto alla traccia avendo già attraversato il primo checkpoint
 			//----------
@@ -169,7 +177,7 @@ public class RedAgent : Agent
         if (agentDead)			//si attiva quando il personaggio muore
         {
             AddReward(-1f);
-            accumulo_posizione_tracks = new Vector3(x:0f,y:0f,z:0f);
+            //accumulo_posizione_tracks = new Vector3(x:0f,y:0f,z:0f);
             Debug.Log("character dead");
             Unsubscribe(trackCheckpoints);
             EndEpisode();
@@ -180,8 +188,6 @@ public class RedAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
 
-        
-	    
         Vector3 red_position = redrunner.transform.localPosition;
         sensor.AddObservation(red_position);
         
@@ -208,9 +214,8 @@ public class RedAgent : Agent
 					checkpoint_position_[0] += 10;
 					checkpoint_position_2_[0] += 20;
 					
-					last_checkpoint = false;
-					subscribed = false;
-                }
+		
+               	}
 				else
                 {				
 					//parte per gestire 2 checkpoint da passare al sensore insieme, altrimenti toglierla, se si vuole provare con 1 checkpoint
@@ -224,14 +229,13 @@ public class RedAgent : Agent
 					{
 						checkpoint_position_2_ = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber+1).transform.position;
 					}
-					
 
 				}
 					
 			}
-			
-				
-		}
+		
+		}				
+
 		//Debug.Log("check_red");
 		//Debug.Log(red_position);
 		//Debug.Log("check_p1");//
@@ -242,7 +246,6 @@ public class RedAgent : Agent
 		//--------------sensor adding the vector position of the checkpoint
 		sensor.AddObservation(checkpoint_position_);
 		sensor.AddObservation(checkpoint_position_2_);	
-		
 	}
 		
 		
@@ -286,7 +289,7 @@ public class RedAgent : Agent
 			}
 			*/
         //---------------------------------------------------------------------------------------------------------------------   
-   
+
     
     //non credo che questa sia da modificare, perchè a partire dall'input Buffer poi attiva i metodi per fargli fare movimenti
     public override void OnActionReceived(ActionBuffers actionBuffers)		//metodo che modifica alcuni parametri dopo aver ricevuto il buffer per far fare le osservazioni effettive all'Agent

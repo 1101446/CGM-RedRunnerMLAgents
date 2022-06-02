@@ -44,7 +44,6 @@ public class RedAgent : Agent
     private int dimTrackCheckPoint;
     private int dimTrackCheckPoint2;
     private int contatore = 0;	//per memorizzare il numero di tracce percorse
-    private bool last_checkpoint = true;
     //----------------
 
     [SerializeField] private int maxEnvironmentStep;
@@ -115,7 +114,6 @@ public class RedAgent : Agent
 			accumulo_posizione_tracks += appoggio_checkpoint_position;//
 			appoggio_checkpoint_position = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.localPosition;
        	    accumulo_posizione_tracks += appoggio_checkpoint_position;
-            last_checkpoint = true;
             currentBlockCheckpointsNumber = 1;	//perchè ci servirà di partire di passargli il secondo checkpoint al runner, dopo che si sarà iscritto alla traccia avendo già attraversato il primo checkpoint
 			//----------
 
@@ -206,14 +204,14 @@ public class RedAgent : Agent
 				checkpoint_position_ = currentTrackCheckpoints.getCheckpoints(currentBlockCheckpointsNumber).transform.position;
 				
 				
-				if (red_position[0] > checkpoint_position_[0] & last_checkpoint==true)	//ci entra quando ho superato l'ultimo checkpoint di ogni traccia
+				if (red_position[0] > checkpoint_position_[0])	//ci entra quando ho superato l'ultimo checkpoint di ogni traccia
                 {
 					checkpoint_position_ = currentTrackCheckpoints.getCheckpoints(currentTrackCheckpoints.getCheckpointsNumber()-1).transform.position;
 					checkpoint_position_2_ = checkpoint_position_;
 					
 					checkpoint_position_[0] += 10;
 					checkpoint_position_2_[0] += 20;
-					last_checkpoint = false;
+					subscribed = false;
 					
 		
                	}
@@ -237,6 +235,7 @@ public class RedAgent : Agent
 		
 		}				
 
+		//Debug.Log("----------------------------");
 		//Debug.Log("check_red");
 		//Debug.Log(red_position);
 		//Debug.Log("check_p1");//

@@ -34,8 +34,8 @@ public class RedAgent : Agent
 
     //private Vector3 checkpoint_position2;
     
-    private Vector3 checkpoint_position_ = new Vector3();
-    private Vector3 checkpoint_position_2_ = new Vector3();
+    private Vector3 checkpoint_position_ = new Vector3(x:0f,y:0f,z:0f);
+    private Vector3 checkpoint_position_2_ = new Vector3(x:0f,y:0f,z:0f);
     private Vector3 appoggio_checkpoint_position;
     private bool subscribed;
     private bool subscribed2 = true; 
@@ -236,12 +236,11 @@ public class RedAgent : Agent
 		}				
 
 		//Debug.Log("----------------------------");
-		//Debug.Log("check_red");
+		//Debug.Log("check_red - check_p1 - check_p2 - Contatore");
 		//Debug.Log(red_position);
-		//Debug.Log("check_p1");//
-		//Debug.Log(checkpoint_position_);//
-		//Debug.Log("check_p2");
+		//Debug.Log(checkpoint_position_);
 		//Debug.Log(checkpoint_position_2_);
+		//Debug.Log(currentBlockCheckpointsNumber);
 			
 		//--------------sensor adding the vector position of the checkpoint
 		sensor.AddObservation(checkpoint_position_);

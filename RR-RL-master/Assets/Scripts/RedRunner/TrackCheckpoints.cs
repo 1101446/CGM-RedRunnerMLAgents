@@ -41,7 +41,7 @@ public class TrackCheckpoints : MonoBehaviour
             
 
             //-----------------------------------------
-            xPosition_2 = checkpointSingleTransform.localPosition;
+            xPosition_2 = checkpointSingleTransform.position;
             //Debug.Log("TRACK_CHECKPOINT - elemento ");
             //Debug.Log(xPosition_2);
             
@@ -69,7 +69,7 @@ public class TrackCheckpoints : MonoBehaviour
         checkpointCorrect = "not set";
     }
     
-    //-----------------------------------------
+    //-----------------------------da rimuovere------------
 
 	public Vector3 getCheckpointPosition(int indice)
 	{

@@ -57163,7 +57163,7 @@ PrefabInstance:
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4115949647110239947, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}

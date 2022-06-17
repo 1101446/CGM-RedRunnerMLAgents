@@ -50675,7 +50675,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x 453673
+  m_Text: x 680371
   m_CoinTextFormat: x {0}
 --- !u!114 &254
 MonoBehaviour:
@@ -57077,6 +57077,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114034318196363972, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
+      propertyPath: m_JumpStrength
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114034318196363972, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
+        type: 3}
       propertyPath: m_CheckPointCheck
       value: 
       objectReference: {fileID: 1389703521}
@@ -57239,6 +57244,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxRayDegrees
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539713298992423285, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
+        type: 3}
+      propertyPath: m_RaysPerDirection
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539713298992423285, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
+        type: 3}
+      propertyPath: m_SphereCastRadius
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4539713298992423285, guid: 639fab1b9d4c44d44908b5a6ecaceafc,
         type: 3}
